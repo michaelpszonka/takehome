@@ -1,29 +1,35 @@
 package com.trueaccord.takehome.dao.model;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.google.gson.annotations.SerializedName;
 import lombok.*;
 
-import javax.persistence.*;
-import java.sql.Date;
+import java.util.Date;
 
-@Entity
+
 @Data
 @Getter @Setter
 @NoArgsConstructor
 @AllArgsConstructor
 public class PaymentPlan {
-    @Id
-    @Column(name = "id")
+    @JsonProperty("id")
+    @SerializedName("id")
     private int id;
-    @Column(name = "amount_to_pay")
+    @JsonProperty("amount_to_pay")
+    @SerializedName("amount_to_pay")
     private double amountToPay;
-    @Column(name = "installment_frequency")
-    private double installmentFrequency;
-    @Column(name = "installment_amount")
+    @JsonProperty("installment_frequency")
+    @SerializedName("installment_frequency")
+    private String installmentFrequency;
+    @JsonProperty("installment_amount")
+    @SerializedName("installment_amount")
     private double installmentAmount;
-    @Column(name = "start_date")
-    private Date startDate;
-//    @OneToOne
-    @Column(name = "debt_id")
-    private int debt_id;
+    @JsonProperty("start_date")
+    @SerializedName("start_date")
+    private String startDate;
+    @JsonProperty("debt_id")
+    @SerializedName("debt_id")
+    private int debtId;
 
 }
