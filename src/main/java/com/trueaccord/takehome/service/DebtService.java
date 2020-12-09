@@ -18,6 +18,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.client.HttpStatusCodeException;
 import org.springframework.web.client.RestClientException;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.*;
 import java.util.function.Function;
 import java.util.stream.Collectors;
@@ -103,7 +105,7 @@ public class DebtService {
      * @param plan
      * @return
      */
-    public Date getNextPaymentDueDate(PaymentPlan plan, double remainingAmount) {
+    public String getNextPaymentDueDate(PaymentPlan plan, double remainingAmount) {
         if(plan == null || remainingAmount == 0.0) {
             return null;
         }
@@ -111,6 +113,7 @@ public class DebtService {
         LocalDate startDate = LocalDate.parse(plan.getStartDate());
         LocalDate today = LocalDate.now();
         int timeDiff = startDate.getDayOfWeek() - today.getDayOfWeek();
+        DateFormat formatter = new SimpleDateFormat("YYY-MM-dd");
 
         try {
             if(plan.getInstallmentFrequency().equals(InstallmentFrequency.WEEKLY.name())) {
@@ -129,7 +132,7 @@ public class DebtService {
             logger.error("Error calculating payment date for debt id " + plan.getDebtId());
             e.printStackTrace();
         }
-        return today.plusDays(timeDiff).toDate();
+        return formatter.format(today.plusDays(timeDiff).toDate());
     }
 
     public double calculateRemainingAmount(Debt debt, PaymentPlan plan, Map<Integer, List<Payment>> planIdToPayments) {

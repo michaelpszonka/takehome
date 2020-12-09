@@ -14,4 +14,6 @@ HashMaps and lists allowing for constant access time.  With more time,I would ha
 requirements around calculating the amount of debt paid off. For example.
  
  1. How to handle discrepancies between payment plans "amount_to_pay" and debts "amounts" of different quantities.
- 2.   How should the next payment date be calculated.  From the most recent payment date, or from todays date? 
+ 2.  How should the next payment date be calculated.  From the most recent date of payment, or from todays date?
+    (this app calculates the next payment by comparing the debt start date and the current date).  This will allow
+    us to reconfigure the app to begin applying interest on delayed debts in the future 

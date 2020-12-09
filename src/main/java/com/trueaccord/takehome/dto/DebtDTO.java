@@ -20,7 +20,7 @@ public class DebtDTO {
     @SerializedName("remaining_amount")
     private double remainingAmount;
     @SerializedName("next_payment_due_date")
-    private Date nextPaymentDueDate;
+    private String nextPaymentDueDate;
 
     public DebtDTO(Debt debt) {
         this.id = debt.getId();
